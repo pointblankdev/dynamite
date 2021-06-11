@@ -4,12 +4,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout 🛎️
       - uses: actions/checkout@master
       - name: Install and Build 🔧
         run: |
           yarn
           yarn build
-      - name: Create a Release
+      - name: Create a Release 🏷️
         uses: elgohr/Github-Release-Action@master
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
