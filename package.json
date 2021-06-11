@@ -1,6 +1,6 @@
 {
   "name": "dynamite",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "a magical dynamodb client",
   "keywords": [],
   "main": "dist/dynamite.umd.js",
