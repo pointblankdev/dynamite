@@ -1,5 +1,5 @@
 import { DynamoDB } from '@aws-sdk/client-dynamodb'
-import { marshall } from '@aws-sdk/util-dynamodb'
+import { marshall, unmarshall } from '@aws-sdk/util-dynamodb'
 
 require('dotenv').config()
 
@@ -13,16 +13,18 @@ export default class Dynamite extends DynamoDB {
   /**
    * Get an item by ID.
    */
-  Δ(id) {
+  async Δ(id) {
     const params = { Key: marshall({ id }) }
-    return this.getItem({ ...this.params, ...params })
+    const { Item } = await this.getItem({ ...this.params, ...params })
+    return unmarshall(Item)
   }
 
   /**
    * Scan all records.
    */
-  Σ() {
-    return this.scan(this.params)
+  async Σ() {
+    const { Items } = await this.scan(this.params)
+    return Items.map(i => unmarshall(i))
   }
 
   /**

@@ -16,12 +16,12 @@ describe('Dynamite', () => {
   })
 
   it('should get an item by ID', async () => {
-    const { Item } = await dynamite.Δ('123')
+    const Item = await dynamite.Δ('123')
     expect(Item).toBeDefined()
   })
 
   it('should scan the table', async () => {
-    const { Items } = await dynamite.Σ()
+    const Items = await dynamite.Σ()
     expect(Items).toBeDefined()
   })
 
