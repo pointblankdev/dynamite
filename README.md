@@ -46,7 +46,7 @@ import { Dynamite } from '@pointblankdev/dynamite'
 // javascript
 // const { Dynamite } = require('@pointblankdev/dynamite')
 
-const dynamite = new Dynamite({ TableName: 'PostsTable' })
+const dynamite = new Dynamite('PostsTable')
 
 // Write items
 dynamite.Ξ([{ title: 'Hello World' }])
