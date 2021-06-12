@@ -1,4 +1,4 @@
-import Dynamite from '../src/dynamite'
+import { Dynamite } from '../src/Dynamite'
 
 /**
  * Dynamite
