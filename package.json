@@ -1,6 +1,6 @@
 {
   "name": "@pointblankdev/dynamite",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "description": "A hyper-opinionated DynamoDB client 🧨",
   "keywords": [
     "aws",
@@ -30,7 +30,8 @@
     "test:prod": "npm run lint && npm run test -- --no-cache",
     "deploy-docs": "ts-node tools/gh-pages-publish",
     "report-coverage": "cat ./coverage/lcov.info | coveralls",
-    "prepublish": "yarn build"
+    "prepublish": "yarn build",
+    "postpublish": "git push"
   },
   "jest": {
     "transform": {
@@ -79,7 +80,7 @@
     "replace-in-file": "^3.4.2",
     "rimraf": "^2.6.2",
     "shelljs": "^0.8.3",
-    "ts-jest": "^23.10.2",
+    "ts-jest": "^26.0.0",
     "ts-node": "^7.0.1",
     "tslint": "^5.11.0",
     "tslint-config-prettier": "^1.15.0",
