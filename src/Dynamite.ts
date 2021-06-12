@@ -30,12 +30,12 @@ export class Dynamite extends DynamoDB {
   /**
    * Batch write up to 25 records.
    */
-  Ξ(data: any) {
+  Ξ(records: object[]) {
     const params = {
       RequestItems: {
-        [this.params.TableName]: data.map((d: any) => ({
+        [this.params.TableName]: records.map((r: object) => ({
           PutRequest: {
-            Item: marshall(d)
+            Item: marshall(r)
           }
         }))
       }

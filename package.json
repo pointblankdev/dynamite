@@ -1,7 +1,7 @@
 {
   "name": "@pointblankdev/dynamite",
-  "version": "0.1.0",
-  "description": "A magical dynamodb client 🧨",
+  "version": "0.1.2",
+  "description": "A hyper-opinionated DynamoDB client 🧨",
   "keywords": [
     "aws",
     "dynamodb",
@@ -29,8 +29,7 @@
     "test:watch": "jest --coverage --watch",
     "test:prod": "npm run lint && npm run test -- --no-cache",
     "deploy-docs": "ts-node tools/gh-pages-publish",
-    "report-coverage": "cat ./coverage/lcov.info | coveralls",
-    "publish": "npm login --scope=@pointblankdev && npm publish --access public"
+    "report-coverage": "cat ./coverage/lcov.info | coveralls"
   },
   "jest": {
     "transform": {
