@@ -49,13 +49,14 @@ import { Dynamite } from '@pointblankdev/dynamite'
 const dynamite = new Dynamite({ TableName: 'PostsTable' })
 
 // batchWriteItem
-dynamite.Ξ([{ id: '123', data: { title: "Time's almost up!" } }])
-
-// getItem
-dynamite.Δ('123')
+dynamite.Ξ([{ title: 'Hello World' }])
+// { id: '4c767a46-c961-4923-bb0b-21564051f9b2', title: 'Hello World' }
 
 // scan
 dynamite.Σ()
+
+// getItem
+dynamite.Δ('4c767a46-c961-4923-bb0b-21564051f9b2')
 ```
 
 <br/>

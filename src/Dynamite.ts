@@ -1,5 +1,6 @@
 import { DynamoDB } from '@aws-sdk/client-dynamodb'
 import { marshall, unmarshall } from '@aws-sdk/util-dynamodb'
+import { v4 as uuid } from 'uuid'
 
 require('dotenv').config()
 
@@ -35,7 +36,7 @@ export class Dynamite extends DynamoDB {
       RequestItems: {
         [this.params.TableName]: records.map((r: object) => ({
           PutRequest: {
-            Item: marshall(r)
+            Item: marshall({ id: uuid(), ...r })
           }
         }))
       }

@@ -26,7 +26,7 @@ describe('Dynamite', () => {
   })
 
   it('should batch write to the table', async () => {
-    const data = await dynamite.Ξ([{ id: '001', data: { name: 'World of Warcraft ⚔️' } }])
+    const data = await dynamite.Ξ([{ data: { name: 'World of Warcraft ⚔️' } }])
     expect(data).toBeDefined()
   })
 })
