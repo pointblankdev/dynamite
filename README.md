@@ -58,7 +58,6 @@ dynamite.Σ()
 
 // Get an item by id
 dynamite.Δ('4c767a46-c961-4923-bb0b-21564051f9b2')
-
 // { id: '4c76...', title: 'Hello World' }
 ```
 
