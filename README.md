@@ -15,13 +15,13 @@ A hyper-opinionated DynamoDB client 🧨
 
 DynamoDB is great- but having to marshall/unmarshall all the inputs/outputs isn't.
 
-This library extends `@aws-sdk/client-dynamodb`, and implements a few new APIs to create a DynamoDB client that is:
+This library extends `@aws-sdk/client-dynamodb`, and implements a few new APIs to create a DynamoDB client that's:
 
 - Magical ✨
 - Opinionated 🧠
 - Fast 💥
 
-Just pass JSON in and get JSON out. Payloads are converted into DynamoDB inputs using `marshall` from `@aws-sdk/util-dynamodb`. Only the results are returned from responses. Have fun.
+Just pass JSON in and get JSON out. Payloads are converted into DynamoDB inputs using `marshall` from `@aws-sdk/util-dynamodb`. Only the results are returned from responses. It also defaults to `us-east-1` if the `AWS_REGION` environment variable isn't defined. Have fun.
 
 <br/>
 
@@ -48,10 +48,13 @@ import { Dynamite } from '@pointblankdev/dynamite'
 
 const dynamite = new Dynamite({ TableName: 'PostsTable' })
 
-dynamite.Ξ([{ id: '123', data: { title: "Time's almost up!" } }])
+// batchWriteItem
+dynamite.Ξ([{ id: '123', data: { title: "Time's almost up!" } }]).then(console.log)
 
+// getItem
 dynamite.Δ('123').then(console.log)
 
+// scan
 dynamite.Σ().then(console.log)
 ```
 
