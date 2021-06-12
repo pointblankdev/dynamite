@@ -48,18 +48,25 @@ import { Dynamite } from '@pointblankdev/dynamite'
 
 const dynamite = new Dynamite({ TableName: 'PostsTable' })
 
-// batchWriteItem
+// Write items
 dynamite.Ξ([{ title: 'Hello World' }])
-// [{'4c767a46-c961-4923-bb0b-21564051f9b2', title: 'Hello World' }]
+// [{ id: '4c76...', title: 'Hello World' }]
 
-// scan
+// Scan all items
 dynamite.Σ()
-// [{ id: '4c767a46-c961-4923-bb0b-21564051f9b2', title: 'Hello World' }]
+// [{ id: '4c76...', title: 'Hello World' }]
 
-// getItem
+// Get an item by id
 dynamite.Δ('4c767a46-c961-4923-bb0b-21564051f9b2')
-// { id: '4c767a46-c961-4923-bb0b-21564051f9b2', title: 'Hello World' }
+
+// { id: '4c76...', title: 'Hello World' }
 ```
+
+<br/>
+
+## Roadmap
+
+Add support for DynamoDB queries.
 
 <br/>
 

@@ -4,7 +4,7 @@ import { Dynamite } from '../src/Dynamite'
  * Dynamite
  */
 describe('Dynamite', () => {
-  const dynamite = new Dynamite({ TableName: 'GatherGames' })
+  const dynamite = new Dynamite('GatherGames')
 
   it('is instantiable', () => {
     expect(dynamite).toBeInstanceOf(Dynamite)

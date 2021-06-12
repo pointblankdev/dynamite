@@ -4,11 +4,13 @@ import { v4 as uuid } from 'uuid'
 
 require('dotenv').config()
 
+const defaultRegion = 'us-east-1'
+
 export class Dynamite extends DynamoDB {
-  params: any
+  ρ: any
   constructor(params: any) {
-    super({ region: process.env.AWS_REGION || 'us-east-1' })
-    this.params = params
+    super({ region: process.env.AWS_REGION || defaultRegion })
+    this.ρ = params.TableName ? params : { TableName: params }
   }
 
   /**
@@ -16,7 +18,7 @@ export class Dynamite extends DynamoDB {
    */
   async Δ(id: string) {
     const params = { Key: marshall({ id }) }
-    const { Item } = await this.getItem({ ...this.params, ...params })
+    const { Item } = await this.getItem({ ...this.ρ, ...params })
     return unmarshall(Item as any)
   }
 
@@ -24,7 +26,7 @@ export class Dynamite extends DynamoDB {
    * Scan all records.
    */
   async Σ() {
-    const { Items } = await this.scan(this.params)
+    const { Items } = await this.scan(this.ρ)
     return Items?.map(i => unmarshall(i))
   }
 
@@ -35,7 +37,7 @@ export class Dynamite extends DynamoDB {
     const response: object[] = []
     const params = {
       RequestItems: {
-        [this.params.TableName]: records.map((r: object) => {
+        [this.ρ.TableName]: records.map((r: object) => {
           const id = uuid()
           const record = { id, ...r }
           response.push(record)
