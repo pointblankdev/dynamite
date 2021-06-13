@@ -114,6 +114,6 @@ AWS_REGION="us-east-1"
 
 <br/>
 
-### What's with the Greek letters as functions names?
+### What's with the Greek letters?
 
 Javascript allows characters from any language for defining variables. I've always found the idea of using single characters symbols for a library intriguing, and since I haven't yet seen anyone give it a try- I figured I would! Yes, you'll need to use copy/paste or intellisense to write functions- and yes it's 100% worth it.
