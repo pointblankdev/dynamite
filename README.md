@@ -69,7 +69,13 @@ dynamite.Γ('4c767a46')
 
 ## Configuration
 
-You can edit the config like this:
+Optionally pass a table and/or region to the contructor
+
+```ts
+const dynamite = new Dynamite('PostsTable', 'us-east-1')
+```
+
+Edit the configuration object directly
 
 ```ts
 // typescript
@@ -91,12 +97,20 @@ dynamite._ρ.primaryKey = 'random_id'
 dynamite._ρ.pkGenerator = () => Math.random().toString()
 ```
 
+Or just let the environment variables do their thing
+
+```bash
+# .env
+
+DYNAMITE_TABLE="Dynamite"
+AWS_REGION="us-east-1"
+```
+
 <br/>
 
 ## Roadmap
 
 - Add support for DynamoDB queries.
-- Improve client configuration types.
 
 <br/>
 
