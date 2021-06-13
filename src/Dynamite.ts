@@ -14,8 +14,8 @@ export class Dynamite extends DynamoDB {
     pkGenerator: () => v4().split('-')[0]
   }
   constructor(table?: string, region?: string) {
-    super({ region: process.env.AWS_REGION || region || defaultRegion })
-    this._ρ.table = process.env.DYNAMITE_TABLE || table || defaultTable
+    super({ region: region || process.env.AWS_REGION || defaultRegion })
+    this._ρ.table = table || process.env.DYNAMITE_TABLE || defaultTable
   }
 
   /**
