@@ -13,7 +13,7 @@ An exciting DynamoDB client 🧨
 
 ## Why?
 
-DynamoDB has to much boilerplate IMO. This makes it better. Your teammates will love it.
+DynamoDB has too much boilerplate. This makes it better. Your teammates will love it.
 
 This library extends `@aws-sdk/client-dynamodb`to create a minimal client that's:
 
@@ -21,7 +21,7 @@ This library extends `@aws-sdk/client-dynamodb`to create a minimal client that's
 - Opinionated 🧠
 - Funny 😂
 
-Just pass JSON in and get JSON out. Payloads are converted into DynamoDB inputs using `marshall` from `@aws-sdk/util-dynamodb`. Only the results are returned from responses. It also defaults to `us-east-1` if the `AWS_REGION` environment variable isn't set. The `id` defaults to a v4 UUID if not provided.
+Just pass JSON in and get JSON out. Payloads are converted into DynamoDB inputs using `marshall` from `@aws-sdk/util-dynamodb`. Only the results are returned from responses. It also defaults to `us-east-1` if the `AWS_REGION` environment variable isn't set. The `id` defaults to a v4 uuid chunk if not provided.
 
 <br/>
 
@@ -61,7 +61,7 @@ dynamite.Δ('4c767a46')
 // { id: '4c767a46', title: 'Hello World' }
 
 // Delete an item by id
-dynamite.Δ('4c767a46')
+dynamite.Γ('4c767a46')
 // 200
 ```
 
