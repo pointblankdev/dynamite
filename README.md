@@ -87,8 +87,8 @@ console.log(dynamite._ρ)
 //   pkGenerator: () => v4().split('-')[0]
 // }
 
-dynamite.primaryKey = 'random_id'
-dynamite.pkGenerator = () => Math.random().toString()
+dynamite._ρ.primaryKey = 'random_id'
+dynamite._ρ.pkGenerator = () => Math.random().toString()
 ```
 
 <br/>
