@@ -4,17 +4,18 @@ import { v4 } from 'uuid'
 
 require('dotenv').config()
 
+const defaultTable = 'Dynamite'
 const defaultRegion = 'us-east-1'
 
 export class Dynamite extends DynamoDB {
   _ρ = {
-    table: '',
+    table: defaultTable,
     primaryKey: 'id',
     pkGenerator: () => v4().split('-')[0]
   }
-  constructor(table: string) {
-    super({ region: process.env.AWS_REGION || defaultRegion })
-    this._ρ.table = table
+  constructor(table?: string, region?: string) {
+    super({ region: process.env.AWS_REGION || region || defaultRegion })
+    this._ρ.table = process.env.DYNAMITE_TABLE || table || defaultTable
   }
 
   /**
