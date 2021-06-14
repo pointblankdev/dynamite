@@ -25,6 +25,14 @@ Just pass JSON in and get JSON out. Payloads are converted into DynamoDB inputs 
 
 <br/>
 
+## Requirements
+
+- For AWS workloads, AWS IAM permissions `dynamodb:*`
+
+- For local development, install the AWS CLI and run `aws configure`, providing your IAM access and secret keys.
+
+<br/>
+
 ## Install
 
 ```bash
@@ -110,7 +118,9 @@ AWS_REGION="us-east-1"
 
 ## Roadmap
 
-- Add support for DynamoDB queries.
+- Add generic types for requests/responses.
+- Add support for DynamoDB `query`.
+- Add support for DynamoDB `upateItem`.
 
 <br/>
 
