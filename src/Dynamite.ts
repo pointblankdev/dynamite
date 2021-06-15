@@ -1,17 +1,20 @@
 import { DynamoDB } from '@aws-sdk/client-dynamodb'
 import { marshall, unmarshall } from '@aws-sdk/util-dynamodb'
 import { v4 } from 'uuid'
-import _, { forIn, fromPairs, merge } from 'lodash'
+import forIn from 'lodash/forIn'
+import fromPairs from 'lodash/fromPairs'
+import merge from 'lodash/merge'
 
 require('dotenv').config()
 
 const defaultTable = 'Dynamite'
 const defaultRegion = 'us-east-1'
+const defaultPrimaryKey = 'id'
 
 export class Dynamite extends DynamoDB {
   _ρ = {
     table: defaultTable,
-    primaryKey: 'id',
+    primaryKey: defaultPrimaryKey,
     pkGenerator: () => v4().split('-')[0]
   }
   constructor(table?: string, region?: string) {
@@ -48,7 +51,7 @@ export class Dynamite extends DynamoDB {
       RequestItems: {
         [this._ρ.table]: records.map((r: object) => {
           const id = this._ρ.pkGenerator()
-          const record = { id, ...r }
+          const record = { [this._ρ.primaryKey]: id, ...r }
           response.push(record)
           const Item = marshall(record)
           return {
@@ -80,7 +83,7 @@ export class Dynamite extends DynamoDB {
     const UpdateExpression = `SET ${sets.join(', ')}`
     const params = {
       TableName: this._ρ.table,
-      Key: marshall({ id }),
+      Key: marshall({ [this._ρ.primaryKey]: id }),
       UpdateExpression,
       ExpressionAttributeValues,
       ExpressionAttributeNames,

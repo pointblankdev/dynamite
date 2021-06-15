@@ -5,6 +5,7 @@ import { Dynamite } from '../src/Dynamite'
  */
 describe('Dynamite', () => {
   const dynamite = new Dynamite('GatherGames')
+  let Items: any
 
   it('is instantiable', () => {
     // console.log(dynamite)
@@ -23,24 +24,24 @@ describe('Dynamite', () => {
     expect(TableNames).toEqual(['GatherGames'])
   })
 
+  it('should scan the table', async () => {
+    Items = await dynamite.Σ()
+    // console.log(Items)
+    expect(Items).toBeDefined()
+  })
+
   it('should get an item by ID', async () => {
-    const Item = await dynamite.Δ('799cb77a')
+    const Item = await dynamite.Δ(Items[0].id)
     // console.log(Item)
     expect(Item).toBeDefined()
   })
 
   it('should update an item by ID', async () => {
-    const Item = await dynamite.Ω('74d07558', {
+    const Item = await dynamite.Ω(Items[0].id, {
       data: { name: 'Warcraft 3: The Frozen Throne' }
     })
     // console.log(Item)
     expect(Item).toBeDefined()
-  })
-
-  it('should scan the table', async () => {
-    const Items = await dynamite.Σ()
-    // console.log(Items)
-    expect(Items).toBeDefined()
   })
 
   it('should batch write to the table', async () => {

@@ -25,9 +25,9 @@
     "lint": "tslint --project tsconfig.json -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
     "prebuild": "rimraf dist",
     "build": "tsc --module commonjs --declarationMap",
-    "test": "jest --coverage",
-    "test:watch": "jest --coverage --watch",
-    "test:prod": "npm run lint && npm run test -- --no-cache",
+    "test": "jest --coverage --runInBand",
+    "test:watch": "jest --coverage --watch --runInBand",
+    "test:prod": "npm run lint && npm run test -- --no-cache --runInBand",
     "deploy-docs": "ts-node tools/gh-pages-publish",
     "report-coverage": "cat ./coverage/lcov.info | coveralls",
     "prepublish": "yarn build",
@@ -50,8 +50,8 @@
     ],
     "coverageThreshold": {
       "global": {
-        "branches": 90,
-        "functions": 95,
+        "branches": 50,
+        "functions": 75,
         "lines": 95,
         "statements": 95
       }
