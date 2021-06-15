@@ -68,6 +68,10 @@ dynamite.Σ()
 dynamite.Δ('4c767a46')
 // { id: '4c767a46', title: 'Hello World' }
 
+// Update an item by id
+dynamite.Ω('4c767a46', { title: 'Goodnight Moon' })
+// { id: '4c767a46', title: 'Goodnight Moon' }
+
 // Delete an item by id
 dynamite.Γ('4c767a46')
 // 200
@@ -120,7 +124,6 @@ AWS_REGION="us-east-1"
 
 - Add generic types for requests/responses.
 - Add support for DynamoDB `query`.
-- Add support for DynamoDB `upateItem`.
 
 <br/>
 
