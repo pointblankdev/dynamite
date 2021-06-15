@@ -135,7 +135,7 @@ Javascript allows characters from any language for defining variables. I've alwa
 
 ## Recommended Settings
 
-By default, VSCode shows a lot of junk intellisense results. Disable it by adding this to your VSCode `settings.json` file.
+By default, VSCode shows a lot of junk intellisense results. Disable these by adding the following to your VSCode `settings.json` file.
 
 ```bash
 "editor.suggest.showWords": false,
