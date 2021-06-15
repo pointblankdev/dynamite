@@ -1,6 +1,7 @@
 import { DynamoDB } from '@aws-sdk/client-dynamodb'
 import { marshall, unmarshall } from '@aws-sdk/util-dynamodb'
 import { v4 } from 'uuid'
+import _, { forIn, fromPairs, merge } from 'lodash'
 
 require('dotenv').config()
 
@@ -22,8 +23,11 @@ export class Dynamite extends DynamoDB {
    * Get an item by ID.
    */
   async Δ(id: string) {
-    const params = { Key: marshall({ [this._ρ.primaryKey]: id }) }
-    const { Item } = await this.getItem({ TableName: this._ρ.table, ...params })
+    const params = {
+      TableName: this._ρ.table,
+      Key: marshall({ [this._ρ.primaryKey]: id })
+    }
+    const { Item } = await this.getItem(params)
     return unmarshall(Item as any)
   }
 
@@ -60,11 +64,45 @@ export class Dynamite extends DynamoDB {
   }
 
   /**
+   * Update an item by ID.
+   */
+  async Ω(id: string, updates: any) {
+    const values: any = []
+    const names: any = []
+    const sets: string[] = []
+    forIn(updates, (v, k) => {
+      values.push([`:${k}`, marshall({ [k]: v })[k]])
+      names.push([`#${k}`, k])
+      sets.push(`#${k} = :${k}`)
+    })
+    const ExpressionAttributeValues = fromPairs(values) as any
+    const ExpressionAttributeNames = fromPairs(names) as any
+    const UpdateExpression = `SET ${sets.join(', ')}`
+    const params = {
+      TableName: this._ρ.table,
+      Key: marshall({ id }),
+      UpdateExpression,
+      ExpressionAttributeValues,
+      ExpressionAttributeNames,
+      ReturnValues: 'ALL_NEW'
+    }
+    const { Attributes } = await this.updateItem(params)
+    const Item: any = {}
+    forIn(Attributes, (v, k) => {
+      merge(Item, unmarshall({ [k]: v }))
+    })
+    return Item
+  }
+
+  /**
    * Delete an item by ID.
    */
   async Γ(id: string) {
-    const params = { Key: marshall({ [this._ρ.primaryKey]: id }) }
-    const { $metadata } = await this.deleteItem({ TableName: this._ρ.table, ...params })
+    const params = {
+      TableName: this._ρ.table,
+      Key: marshall({ [this._ρ.primaryKey]: id })
+    }
+    const { $metadata } = await this.deleteItem(params)
     return $metadata.httpStatusCode
   }
 }

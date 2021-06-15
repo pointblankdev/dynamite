@@ -13,16 +13,26 @@ describe('Dynamite', () => {
 
   it('is configurable', async () => {
     dynamite._ρ.pkGenerator = () => Math.random().toString()
+    // console.log(dynamite._ρ)
     expect(dynamite._ρ).toBeDefined()
   })
 
   it('should list tables', async () => {
     const { TableNames } = await dynamite.listTables({})
+    // console.log(TableNames)
     expect(TableNames).toEqual(['GatherGames'])
   })
 
   it('should get an item by ID', async () => {
-    const Item = await dynamite.Δ('cbf8f41d')
+    const Item = await dynamite.Δ('799cb77a')
+    // console.log(Item)
+    expect(Item).toBeDefined()
+  })
+
+  it('should update an item by ID', async () => {
+    const Item = await dynamite.Ω('74d07558', {
+      data: { name: 'Warcraft 3: The Frozen Throne' }
+    })
     // console.log(Item)
     expect(Item).toBeDefined()
   })
