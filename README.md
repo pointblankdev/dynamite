@@ -25,7 +25,7 @@ Just pass JSON in and get JSON out. Payloads are converted into DynamoDB inputs 
 
 <br/>
 
-## Requirements
+### Requirements
 
 - For AWS workloads, AWS IAM permissions `dynamodb:*`
 
@@ -130,3 +130,13 @@ AWS_REGION="us-east-1"
 ### What's with the Greek letters?
 
 Javascript allows characters from any language for defining variables. I've always found the idea of using single characters symbols for a library intriguing, and since I haven't yet seen anyone give it a try- I figured I would! Yes, you'll need to use copy/paste or intellisense to write functions- and yes it's 100% worth it.
+
+<br/>
+
+## Recommended Settings
+
+By default, VSCode shows a lot of junk intellisense results. Disable it by adding this to your VSCode `settings.json` file.
+
+```bash
+"editor.suggest.showWords": false,
+```
