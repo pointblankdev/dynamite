@@ -21,7 +21,7 @@ This library extends `@aws-sdk/client-dynamodb`to create a minimal client that's
 - Opinionated 🧠
 - Funny 😂
 
-Just pass JSON in and get JSON out. Payloads are converted into DynamoDB inputs using `marshall` from `@aws-sdk/util-dynamodb`. Only the results are returned from responses. It also defaults to `us-east-1` if the `AWS_REGION` environment variable isn't set. The `id` defaults to a v4 uuid chunk if not provided.
+Just pass JSON in and get JSON out. Payloads are converted into DynamoDB inputs using `marshall` from `@aws-sdk/util-dynamodb`. Only the results are returned from responses. It also defaults to `us-east-1` if the `AWS_REGION` environment variable isn't set. When writing data, a `uuid` is generated for the primary key (`id` by default) if one is not provided.
 
 <br/>
 
@@ -113,9 +113,10 @@ Or just let the environment variables do their thing
 
 ```bash
 # .env
-
 DYNAMITE_TABLE="Dynamite"
 AWS_REGION="us-east-1"
+AWS_ACCESS_KEY_ID="🔒"
+AWS_SECRET_ACCESS_KEY="🔑"
 ```
 
 <br/>
