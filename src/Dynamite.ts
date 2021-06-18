@@ -43,7 +43,7 @@ export class Dynamite extends DynamoDB {
   }
 
   /**
-   * Batch write up to 25 records.
+   * Batch write any number of records.
    */
   async Ξ(records: object[]) {
     // Chunk into batches of 25 requests maximum

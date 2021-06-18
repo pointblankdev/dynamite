@@ -1,33 +1,5 @@
 import { Dynamite } from '../src/Dynamite'
-
-const mockData = [
-  { data: 'test-write-data' },
-  { data: 'test-write-data' },
-  { data: 'test-write-data' },
-  { data: 'test-write-data' },
-  { data: 'test-write-data' },
-  { data: 'test-write-data' },
-  { data: 'test-write-data' },
-  { data: 'test-write-data' },
-  { data: 'test-write-data' },
-  { data: 'test-write-data' },
-  { data: 'test-write-data' },
-  { data: 'test-write-data' },
-  { data: 'test-write-data' },
-  { data: 'test-write-data' },
-  { data: 'test-write-data' },
-  { data: 'test-write-data' },
-  { data: 'test-write-data' },
-  { data: 'test-write-data' },
-  { data: 'test-write-data' },
-  { data: 'test-write-data' },
-  { data: 'test-write-data' },
-  { data: 'test-write-data' },
-  { data: 'test-write-data' },
-  { data: 'test-write-data' },
-  { data: 'test-write-data' },
-  { data: 'test-write-data' }
-]
+const testData = require('../mocks/data.json')
 
 /**
  * Dynamite
@@ -81,8 +53,9 @@ describe('Dynamite', () => {
     // console.log(Item)
     expect(Item).toBeDefined()
   })
+
   it('should batch write to the table', async () => {
-    const data: any = await dynamite.Ξ(mockData)
+    const data: any = await dynamite.Ξ(testData)
     // console.log(data)
     expect(data).toBeDefined()
     expect(data.length).toBeDefined()
