@@ -46,23 +46,35 @@ export class Dynamite extends DynamoDB {
    * Batch write up to 25 records.
    */
   async Ξ(records: object[]) {
-    const response: object[] = []
-    const params = {
-      RequestItems: {
-        [this._ρ.table]: records.map((r: object) => {
-          const id = this._ρ.pkGenerator()
-          const record = { [this._ρ.primaryKey]: id, ...r }
-          response.push(record)
-          const Item = marshall(record)
-          return {
-            PutRequest: {
-              Item
-            }
-          }
-        })
-      }
+    // Chunk into batches of 25 requests maximum
+    let requestBatches = []
+    for (let i = 0; i < records.length; i += 25) {
+      let chunk = records.slice(i, i + 25)
+      requestBatches.push(chunk)
     }
-    await this.batchWriteItem(params)
+    // Track responses for a single return collection
+    const response: object[] = []
+    // Loop through each batch
+    for (const batch of requestBatches) {
+      // Form payload
+      const params = {
+        RequestItems: {
+          [this._ρ.table]: batch.map((r: object) => {
+            const id = this._ρ.pkGenerator()
+            const record = { [this._ρ.primaryKey]: id, ...r }
+            response.push(record)
+            const Item = marshall(record)
+            return {
+              PutRequest: {
+                Item
+              }
+            }
+          })
+        }
+      }
+      // Send request
+      await this.batchWriteItem(params)
+    }
     return response
   }
 

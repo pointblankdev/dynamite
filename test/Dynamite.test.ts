@@ -1,5 +1,34 @@
 import { Dynamite } from '../src/Dynamite'
 
+const mockData = [
+  { data: 'test-write-data' },
+  { data: 'test-write-data' },
+  { data: 'test-write-data' },
+  { data: 'test-write-data' },
+  { data: 'test-write-data' },
+  { data: 'test-write-data' },
+  { data: 'test-write-data' },
+  { data: 'test-write-data' },
+  { data: 'test-write-data' },
+  { data: 'test-write-data' },
+  { data: 'test-write-data' },
+  { data: 'test-write-data' },
+  { data: 'test-write-data' },
+  { data: 'test-write-data' },
+  { data: 'test-write-data' },
+  { data: 'test-write-data' },
+  { data: 'test-write-data' },
+  { data: 'test-write-data' },
+  { data: 'test-write-data' },
+  { data: 'test-write-data' },
+  { data: 'test-write-data' },
+  { data: 'test-write-data' },
+  { data: 'test-write-data' },
+  { data: 'test-write-data' },
+  { data: 'test-write-data' },
+  { data: 'test-write-data' }
+]
+
 /**
  * Dynamite
  */
@@ -53,7 +82,7 @@ describe('Dynamite', () => {
     expect(Item).toBeDefined()
   })
   it('should batch write to the table', async () => {
-    const data: any = await dynamite.Ξ([{ data: { name: 'World of Warcraft ⚔️' } }])
+    const data: any = await dynamite.Ξ(mockData)
     // console.log(data)
     expect(data).toBeDefined()
     expect(data.length).toBeDefined()
