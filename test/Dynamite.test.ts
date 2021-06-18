@@ -44,10 +44,21 @@ describe('Dynamite', () => {
     expect(Item).toBeDefined()
   })
 
+  it('should ignore primary key updates', async () => {
+    const Item = await dynamite.Ω(Items[0].id, {
+      id: '123',
+      data: { name: 'Warcraft 3: The Frozen Throne' }
+    })
+    // console.log(Item)
+    expect(Item).toBeDefined()
+  })
   it('should batch write to the table', async () => {
-    const data = await dynamite.Ξ([{ data: { name: 'World of Warcraft ⚔️' } }])
+    const data: any = await dynamite.Ξ([{ data: { name: 'World of Warcraft ⚔️' } }])
     // console.log(data)
     expect(data).toBeDefined()
+    expect(data.length).toBeDefined()
+    expect(data[0]).toBeDefined()
+    expect(data[0].id).toBeDefined()
   })
 
   it('should delete an item by id', async () => {

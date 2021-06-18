@@ -74,6 +74,7 @@ export class Dynamite extends DynamoDB {
     const names: any = []
     const sets: string[] = []
     forIn(updates, (v, k) => {
+      if (k === this._ρ.primaryKey) return
       values.push([`:${k}`, marshall({ [k]: v })[k]])
       names.push([`#${k}`, k])
       sets.push(`#${k} = :${k}`)
