@@ -45,7 +45,13 @@ export class Dynamite extends DynamoDB {
   /**
    * Batch write any number of records.
    */
-  async Ξ(records: object[]) {
+  async Ξ(data: object[] | object) {
+    let records: object[]
+    if (!Array.isArray(data) && typeof data === 'object' && data !== null) {
+      records = [data]
+    } else {
+      records = data
+    }
     // Chunk into batches of 25 requests maximum
     let requestBatches = []
     for (let i = 0; i < records.length; i += 25) {

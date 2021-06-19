@@ -63,6 +63,15 @@ describe('Dynamite', () => {
     expect(data[0].id).toBeDefined()
   })
 
+  it('should write a single record', async () => {
+    const data: any = await dynamite.Ξ(testData[0])
+    // console.log(data)
+    expect(data).toBeDefined()
+    expect(data.length).toBeDefined()
+    expect(data[0]).toBeDefined()
+    expect(data[0].id).toBeDefined()
+  })
+
   it('should delete an item by id', async () => {
     const data = await dynamite.Γ('2deec51c-fd5c-4b91-b94b-7501d20533ee')
     // console.log(data)
