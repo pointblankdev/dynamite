@@ -77,4 +77,55 @@ describe('Dynamite', () => {
     // console.log(data)
     expect(data).toBeDefined()
   })
+
+  describe('List Management', () => {
+    it('should scan the table', async () => {
+      Items = await dynamite.Σ()
+      // console.log(Items)
+      expect(Items).toBeDefined()
+    })
+
+    it('should reset the list', async () => {
+      const Item = await dynamite.Ω(Items[0].id, {
+        company: 'Blizzard Entertainment',
+        games: []
+      })
+      // console.log(Item)
+      expect(Item.games.length).toBe(0)
+    })
+
+    it('should push an item onto an empty list', async () => {
+      const Item = await dynamite.Ω(Items[0].id, {
+        games: [{ name: 'Warcraft' }]
+      })
+      // console.log(Item)
+      expect(Item).toBeDefined()
+      const UpdatedItem = await dynamite.Δ(Items[0].id)
+      // console.log(UpdatedItem)
+      expect(UpdatedItem.games.length).toBe(1)
+    })
+
+    it('should push multiple items onto a populated list', async () => {
+      const Item = await dynamite.Ω(Items[0].id, {
+        games: [{ name: 'Warcraft 2' }, { name: 'Warcraft 3: The Frozen Throne' }]
+      })
+      // console.log(Item)
+      expect(Item).toBeDefined()
+      const UpdatedItem = await dynamite.Δ(Items[0].id)
+      // console.log(UpdatedItem)
+      expect(UpdatedItem.games.length).toBe(3)
+    })
+
+    it('should push an item and set data at the same time', async () => {
+      const Item = await dynamite.Ω(Items[0].id, {
+        data: 'GAME_DATA',
+        games: [{ name: 'World of Warcraft' }]
+      })
+      // console.log(Item)
+      expect(Item).toBeDefined()
+      const UpdatedItem = await dynamite.Δ(Items[0].id)
+      // console.log(UpdatedItem)
+      expect(UpdatedItem.games.length).toBe(4)
+    })
+  })
 })
