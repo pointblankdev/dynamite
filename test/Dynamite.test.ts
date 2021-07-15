@@ -19,7 +19,7 @@ describe('Dynamite', () => {
     expect(dynamite._ρ).toBeDefined()
   })
 
-  it('should list tables', async () => {
+  xit('should list tables', async () => {
     const { TableNames } = await dynamite.listTables({})
     // console.log(TableNames)
     expect(TableNames).toEqual(['GatherGames'])
@@ -94,9 +94,17 @@ describe('Dynamite', () => {
       expect(Item.games.length).toBe(0)
     })
 
+    it('should not define the list', async () => {
+      const Item = await dynamite.Ω(Items[0].id, {
+        company: 'Blizzard Entertainment'
+      })
+      // console.log(Item)
+      // expect(Item.games.length).toBe(0)
+    })
+
     it('should push an item onto an empty list', async () => {
       const Item = await dynamite.Ω(Items[0].id, {
-        games: [{ name: 'Warcraft' }]
+        '+games': [{ name: 'Warcraft' }]
       })
       // console.log(Item)
       expect(Item).toBeDefined()
@@ -148,6 +156,42 @@ describe('Dynamite', () => {
       const UpdatedItem = await dynamite.Δ(Items[0].id)
       // console.log(UpdatedItem)
       expect(UpdatedItem.games.length).toBe(2)
+    })
+
+    describe('List Appending', () => {
+      it('should scan the table', async () => {
+        Items = await dynamite.Σ()
+        // console.log(Items)
+        expect(Items).toBeDefined()
+      })
+
+      it('should not define the list', async () => {
+        const Item = await dynamite.Ω(Items[0].id, {
+          company: 'Blizzard Entertainment'
+        })
+        // console.log(Item)
+        // expect(Item.games.length).toBe(0)
+      })
+
+      it('should push an item onto an empty list', async () => {
+        const Item = await dynamite.Ω(Items[0].id, {
+          '+games': [{ name: 'Warcraft' }]
+        })
+        // console.log(Item)
+        expect(Item).toBeDefined()
+        const UpdatedItem = await dynamite.Δ(Items[0].id)
+        // console.log(UpdatedItem)
+        expect(UpdatedItem.games.length).toBe(1)
+      })
+
+      it('should reset the list', async () => {
+        const Item = await dynamite.Ω(Items[0].id, {
+          company: 'Blizzard Entertainment',
+          games: []
+        })
+        // console.log(Item)
+        expect(Item.games.length).toBe(0)
+      })
     })
   })
 })
