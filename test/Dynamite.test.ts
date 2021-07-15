@@ -107,7 +107,7 @@ describe('Dynamite', () => {
 
     it('should push multiple items onto a populated list', async () => {
       const Item = await dynamite.Ω(Items[0].id, {
-        games: [{ name: 'Warcraft 2' }, { name: 'Warcraft 3: The Frozen Throne' }]
+        '+games': [{ name: 'Warcraft 2' }, { name: 'Warcraft 3: The Frozen Throne' }]
       })
       // console.log(Item)
       expect(Item).toBeDefined()
@@ -119,13 +119,35 @@ describe('Dynamite', () => {
     it('should push an item and set data at the same time', async () => {
       const Item = await dynamite.Ω(Items[0].id, {
         data: 'GAME_DATA',
-        games: [{ name: 'World of Warcraft' }]
+        '+games': [{ name: 'World of Warcraft' }]
       })
       // console.log(Item)
       expect(Item).toBeDefined()
       const UpdatedItem = await dynamite.Δ(Items[0].id)
       // console.log(UpdatedItem)
       expect(UpdatedItem.games.length).toBe(4)
+    })
+
+    it('should set an item onto an list, resetting it', async () => {
+      const Item = await dynamite.Ω(Items[0].id, {
+        games: [{ name: 'Warcraft' }]
+      })
+      // console.log(Item)
+      expect(Item).toBeDefined()
+      const UpdatedItem = await dynamite.Δ(Items[0].id)
+      // console.log(UpdatedItem)
+      expect(UpdatedItem.games.length).toBe(1)
+    })
+
+    it('should push an item onto a populated list', async () => {
+      const Item = await dynamite.Ω(Items[0].id, {
+        '+games': [{ name: 'Warcraft 2' }]
+      })
+      // console.log(Item)
+      expect(Item).toBeDefined()
+      const UpdatedItem = await dynamite.Δ(Items[0].id)
+      // console.log(UpdatedItem)
+      expect(UpdatedItem.games.length).toBe(2)
     })
   })
 })

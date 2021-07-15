@@ -93,15 +93,16 @@ export class Dynamite extends DynamoDB {
     const sets: string[] = []
     forIn(updates, (v, k) => {
       if (k === this._ρ.primaryKey) return
-      values.push([`:${k}`, marshall({ [k]: v })[k]])
-      names.push([`#${k}`, k])
-      if (Array.isArray(v) && v.length !== 0) {
-        // If the argument a non-empty list, defaults to list_append
+      // If the argument a non-empty list, default to list_append
+      // Else, use a basic SET
+      if (Array.isArray(v) && v.length !== 0 && k.startsWith('+')) {
+        k = k.substr(1)
         sets.push(`#${k} = list_append(#${k}, :${k})`)
       } else {
-        // Otherwise, uses a basic SET
         sets.push(`#${k} = :${k}`)
       }
+      values.push([`:${k}`, marshall({ [k]: v })[k]])
+      names.push([`#${k}`, k])
     })
     const ExpressionAttributeValues = fromPairs(values) as any
     const ExpressionAttributeNames = fromPairs(names) as any

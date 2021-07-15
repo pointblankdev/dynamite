@@ -72,9 +72,9 @@ dynamite.Δ('4c767a46')
 dynamite.Ω('4c767a46', { title: 'Goodnight Moon' })
 // { id: '4c767a46', title: 'Goodnight Moon' }
 
-// list_append is used when passed an array
-dynamite.Ω('4c767a46', { books: [{ title: 'Brave New World' }] })
-dynamite.Ω('4c767a46', { books: [{ title: 'Hello World' }, { title: 'Goodnight Moon' }] })
+// list_append is used when passed an array with '+'
+dynamite.Ω('4c767a46', { '+books': [{ title: 'Brave New World' }] })
+dynamite.Ω('4c767a46', { '+books': [{ title: 'Hello World' }, { title: 'Goodnight Moon' }] })
 // { id: '4c767a46', books: [{ title: 'Brave New World' }, { title: 'Hello World' }, { title: 'Goodnight Moon' }] }
 
 // And reset with an empty array
