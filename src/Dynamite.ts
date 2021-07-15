@@ -95,7 +95,7 @@ export class Dynamite extends DynamoDB {
       if (k === this._ρ.primaryKey) return
       // If the argument a non-empty list, default to list_append
       // Else, use a basic SET
-      if (Array.isArray(v) && v.length !== 0 && k.startsWith('+')) {
+      if (Array.isArray(v) && k.startsWith('+')) {
         k = k.substr(1)
         sets.push(`#${k} = list_append(#${k}, :${k})`)
       } else {
